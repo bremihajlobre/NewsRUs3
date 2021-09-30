@@ -1,0 +1,22 @@
+﻿@model IEnumerable<NewsRUs2.Models.News>
+
+<h1>Latest News</h1>
+
+<a class="create text-left" asp-action="Create">Tell us, what is happening in the world?</a>
+
+@foreach (var neew in Model)
+{
+    <div class="idea">
+        <span>By: @neew.UserName on @neew.Created.ToLocalTime()</span>
+        <span>Last Updated: @neew.LastUpdated.ToLocalTime()</span>
+        <div>
+            @neew.Content
+        </div>
+        @if (User.Identity.IsAuthenticated && User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value == @neew.UserId)
+        {
+            <a asp-action="Edit" asp-route-id="@neew.Id">edit</a>
+            <a asp-action="Delete" asp-route-id="@neew.Id">delete</a>
+        }
+    </div>
+}
+<hr />

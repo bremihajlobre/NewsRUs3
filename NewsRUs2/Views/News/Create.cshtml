@@ -1,0 +1,9 @@
+﻿@model NewsRUs2.Models.News
+
+<form asp-action="Create">
+    <fieldset class="idea-form">
+        <h2>Submit a Story</h2>
+        @Html.TextAreaFor(m => m.Content)
+        <input type="submit" name="Create" />
+    </fieldset>
+</form>
